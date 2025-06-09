@@ -1,0 +1,225 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-borderColor;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
+  }
+  
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 h-10 py-2 px-4;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary-100 text-secondary-900 hover:bg-secondary-200 h-10 py-2 px-4;
+  }
+  
+  .btn-outline {
+    @apply border border-input hover:bg-accent hover:text-accent-foreground h-10 py-2 px-4;
+  }
+  
+  .input {
+    @apply flex h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  
+  .card {
+    @apply rounded-lg border bg-card text-card-foreground shadow-sm;
+  }
+  
+  .card-header {
+    @apply flex flex-col space-y-1.5 p-6;
+  }
+  
+  .card-content {
+    @apply p-6 pt-0;
+  }
+  
+  .card-footer {
+    @apply flex items-center p-6 pt-0;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Video conferencing styles */
+.video-grid {
+  display: grid;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+.video-grid-1 {
+  grid-template-columns: 1fr;
+}
+
+.video-grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.video-grid-3 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.video-grid-4 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.video-grid-many {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.video-participant {
+  @apply relative rounded-lg overflow-hidden bg-gray-900;
+  aspect-ratio: 16/9;
+}
+
+.video-participant video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-controls {
+  @apply absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-2 bg-black bg-opacity-50 rounded-full px-4 py-2;
+}
+
+.video-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/50 to-transparent pointer-events-none;
+}
+
+.participant-name {
+  @apply absolute bottom-2 left-2 text-white text-sm font-medium bg-black bg-opacity-50 px-2 py-1 rounded;
+}
+
+/* Chat styles */
+.chat-container {
+  @apply flex flex-col h-full;
+}
+
+.chat-messages {
+  @apply flex-1 overflow-y-auto p-4 space-y-3;
+}
+
+.chat-message {
+  @apply flex items-start space-x-2;
+}
+
+.chat-message.own {
+  @apply flex-row-reverse space-x-reverse;
+}
+
+.chat-bubble {
+  @apply max-w-xs lg:max-w-md px-3 py-2 rounded-lg;
+}
+
+.chat-bubble.own {
+  @apply bg-primary-600 text-white;
+}
+
+.chat-bubble.other {
+  @apply bg-gray-200 text-gray-900;
+}
+
+/* Reaction animations */
+.reaction {
+  @apply absolute pointer-events-none text-2xl;
+  animation: reactionFloat 2s ease-out forwards;
+}
+
+@keyframes reactionFloat {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px) scale(1.5);
+  }
+}
+
+/* Loading states */
+.skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+
+.loading-spinner {
+  @apply animate-spin rounded-full border-2 border-gray-300 border-t-primary-600;
+}
+
+/* Responsive video grid */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  
+  .video-participant {
+    aspect-ratio: 4/3;
+  }
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
