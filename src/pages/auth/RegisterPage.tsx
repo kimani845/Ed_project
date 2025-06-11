@@ -290,7 +290,7 @@ const RegisterPage = () => {
               <>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-3">
-                    Subjects you can teach *
+                    Subjects you teach *
                   </label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                     {subjectOptions.map((subject) => (
