@@ -81,7 +81,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-300">
-            © 2024 EduConnect Kenya. All rights reserved. Made with ❤️ for Kenyan education.
+            © 2025 EduConnect Kenya. All rights reserved. Made with ❤️ for Kenyan education.
           </p>
         </div>
       </div>
