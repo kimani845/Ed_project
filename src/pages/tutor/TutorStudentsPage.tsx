@@ -14,6 +14,7 @@ import {
   Star
 } from 'lucide-react';
 
+// Student information to the tutor
 interface Student {
   id: string;
   name: string;
